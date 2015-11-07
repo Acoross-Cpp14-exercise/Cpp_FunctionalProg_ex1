@@ -57,12 +57,14 @@ public:
 		return a2(0, 1, 1, n);
 	}
 
+	typedef int (*Func) (int n);
+
 private:
-	static std::string format(std::string name, const int n, int(*func)(int n))
+	static std::string format(std::string name, const int n, Func f)
 	{
-		const char* msg = "The %s of %dth is %d.\n";
+		const char* msg = "The %s of %d is %d.\n";
 		char buf[100];
-		sprintf_s(buf, msg, name.c_str(), n, func(n));
+		sprintf_s(buf, msg, name.c_str(), n, f(n));
 		return std::string(buf);
 	}
 
